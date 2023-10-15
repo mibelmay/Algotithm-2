@@ -45,6 +45,7 @@ namespace LeviIsland.ViewModels
             newWindow.DataContext= newVM;
             newVM.NumberOfRings = int.Parse(NumberOfRings);
             newWindow.Show();
+            newVM.GetReady();
         });
     }
 }
