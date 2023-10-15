@@ -12,7 +12,7 @@ namespace LeviIsland.ViewModels
     {
         public int Width = 1000;
         public int Height = 700;
-        public int Depth;
+        public int Depth { get; set; }
         private Canvas _canvas = new Canvas();
         public Canvas Canvas
         {
@@ -32,7 +32,7 @@ namespace LeviIsland.ViewModels
             Fractal fractal = new Fractal();
             fractal.GenerateIsland(Width, Height, Depth);
             Lines = fractal.Lines;
-            DrawLines(Lines);
+            DrawLines(fractal.Lines);
         });
 
         public ICommand End => new CommandDelegate(param =>
@@ -41,7 +41,7 @@ namespace LeviIsland.ViewModels
             Fractal fractal = new Fractal();
             fractal.GenerateIsland(Width, Height, Depth);
             Lines = fractal.Lines;
-            ShowResult(Lines);
+            ShowResult(fractal.Lines);
         });
 
         public async void DrawLines(List<Line> lines)

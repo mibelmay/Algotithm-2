@@ -14,6 +14,16 @@ namespace LeviIsland.ViewModels
                 OnPropertyChanged();
             }
         }
+        private string _numberOfRings;
+        public string NumberOfRings
+        {
+            get { return _numberOfRings; }
+            set
+            {
+                _numberOfRings = value;
+                OnPropertyChanged();
+            }
+        }
         public ICommand OpenFractalWindow => new CommandDelegate(param => 
         {
             LeviIslandWindow newWindow= new LeviIslandWindow();
@@ -25,6 +35,15 @@ namespace LeviIsland.ViewModels
                 return;
             }
             newVM.Depth = int.Parse(Depth);
+            newWindow.Show();
+        });
+
+        public ICommand OpenHanoiWindow => new CommandDelegate(param =>
+        {
+            HanoiTowersWindow newWindow = new HanoiTowersWindow();
+            HanoiTowersWindowVM newVM = new HanoiTowersWindowVM();
+            newWindow.DataContext= newVM;
+            newVM.NumberOfRings = int.Parse(NumberOfRings);
             newWindow.Show();
         });
     }

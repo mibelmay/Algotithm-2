@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Brushes = System.Windows.Media.Brushes;
-//using System.Windows.Media;
 
 namespace LeviIsland.Models
 {
