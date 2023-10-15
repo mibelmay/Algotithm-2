@@ -43,6 +43,11 @@ namespace LeviIsland.ViewModels
             HanoiTowersWindow newWindow = new HanoiTowersWindow();
             HanoiTowersWindowVM newVM = new HanoiTowersWindowVM();
             newWindow.DataContext= newVM;
+            if (!IsDisksValid(NumberOfRings))
+            {
+                NumberOfRings = "Введено некорректное количество дисков";
+                return;
+            }
             newVM.NumberOfRings = int.Parse(NumberOfRings);
             newWindow.Show();
             newVM.GetReady();
