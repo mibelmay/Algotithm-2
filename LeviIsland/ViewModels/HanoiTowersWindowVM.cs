@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Diagnostics;
 using System.Drawing.Printing;
 using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace LeviIsland.ViewModels
 {
@@ -50,6 +51,7 @@ namespace LeviIsland.ViewModels
         private List<Tuple<char, char>> Movements = new List<Tuple<char, char>>();
         private int _ringHeight = 10;
         private static int _ringMoveTime = 500;
+        public ObservableCollection<string> Steps { get; set; } = new ObservableCollection<string>();
 
         public ICommand Start => new CommandDelegate(param => 
         {
@@ -90,6 +92,8 @@ namespace LeviIsland.ViewModels
             foreach (Tuple<char, char> move in Movements)
             {
                 MoveRing(move.Item1, move.Item2);
+                //Steps.Add($"{move.Item1} -> {move.Item2}");
+                Steps.Insert(0, $"{move.Item1} -> {move.Item2}");
                 await Task.Delay(_ringMoveTime);
             }
         }

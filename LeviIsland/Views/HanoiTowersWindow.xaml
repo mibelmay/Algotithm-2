@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:LeviIsland.Views"
         xmlns:vm="clr-namespace:LeviIsland.ViewModels"
         mc:Ignorable="d"
-        Title="Hanoi towers" Height="500" Width="700" Background="#222222">
+        Title="Hanoi towers" Height="500" Width="800" Background="#222222">
     <Window.DataContext>
         <vm:HanoiTowersWindowVM/>
     </Window.DataContext>
@@ -16,6 +16,10 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="40"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="100"/>
+        </Grid.ColumnDefinitions>
         <Canvas Background="Transparent" x:Name="gameField" Width="600" Grid.Row="0">
             <Rectangle Fill="#FFFEF7" Height="10" Canvas.Left="48" Stroke="#FFFEF7" Canvas.Bottom="0" Width="120"/>
             <Rectangle Fill="#FFFEF7" Height="10" Canvas.Left="240" Stroke="#FFFEF7" Canvas.Bottom="0" Width="120"/>
@@ -35,5 +39,11 @@
             </Canvas>
         </Canvas>
         <Button Command="{Binding Start}" Content="Start" Grid.Row="1" Background="#9E9E9E" Margin="10,5,10,5"/>
+        <ScrollViewer
+            Grid.Row="0"
+            Grid.Column="1"
+            VerticalScrollBarVisibility="Auto">
+        <ItemsControl Foreground="Wheat" ItemsSource="{Binding Steps}" Grid.Row="0" Grid.Column="1"/>
+        </ScrollViewer>
     </Grid>
 </Window>
