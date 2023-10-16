@@ -23,13 +23,13 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
-        <Button Command="{Binding OpenFractalWindow}" Content="Start" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" FontSize="15" Background="#9E9E9E" Margin="5,0,5,0"/>
+        <Button Command="{Binding OpenFractalWindow}" Content="Start" Grid.Row="3" Grid.Column="1" VerticalAlignment="Center" Style="{DynamicResource RoundedButton}" Margin="5,0,5,0"/>
         <TextBlock Text="Choose depth (between 1 and 17):" Grid.Column="1" Grid.Row="1" Foreground="#cfcfcf"/>
         <TextBox Text="{Binding Depth}" Grid.Row="2" Grid.Column="1"  Background="#9e9e9e" Margin="5,10,5,50"/>
         <TextBlock Text="Фрактал Остров Леви" FontSize="20" Foreground="#cfcfcf" Grid.Column="1" Grid.Row="0"/>
         <TextBlock Text="Ханойские башни" FontSize="20" Foreground="#cfcfcf" Grid.Column="2" Grid.Row="0"/>
         <TextBox Text="{Binding NumberOfRings}" Grid.Row="2" Grid.Column="2"  Background="#9e9e9e" Margin="5,10,5,50"/>
         <TextBlock Text="Choose number of rings (between 1 and ...):" Grid.Column="2" Grid.Row="1" Foreground="#cfcfcf"/>
-        <Button Command="{Binding OpenHanoiWindow}" Content="Start" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" FontSize="15" Background="#9E9E9E"  Margin="5,0,5,0"/>
+        <Button Command="{Binding OpenHanoiWindow}" Content="Start" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Style="{DynamicResource RoundedButton}"  Margin="5,0,5,0"/>
     </Grid>
 </Window>

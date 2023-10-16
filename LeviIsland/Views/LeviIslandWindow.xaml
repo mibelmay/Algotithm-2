@@ -20,8 +20,8 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Command="{Binding End}" Content="End" Grid.Column="1" FontSize="18"/>
-            <Button Command="{Binding ShowFractal}" Content="Start" Grid.Column="0" FontSize="18"/>
+            <Button Command="{Binding End}" Content="End" Grid.Column="1" Style="{DynamicResource RoundedButton}"/>
+            <Button Command="{Binding ShowFractal}" Content="Start" Grid.Column="0" Style="{DynamicResource RoundedButton}"/>
         </Grid>
         <Canvas Width="{Binding Width}" Height="{Binding Height}" Grid.Row="0" >
             <ContentPresenter Content="{Binding Canvas}" />

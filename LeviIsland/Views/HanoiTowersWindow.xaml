@@ -21,7 +21,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="40"/>
             </Grid.RowDefinitions>
-            <Button Command="{Binding Start}" IsEnabled="{Binding IsButtonEnabled}" Content="Start" Grid.Row="1" Background="#9E9E9E" Margin="10,5,10,5"/>
+            <Button Style="{DynamicResource RoundedButton}" Command="{Binding Start}" IsEnabled="{Binding IsButtonEnabled}" Content="Start" Grid.Row="1" Margin="10,5,10,5"/>
             <Canvas Background="Transparent" x:Name="gameField" Width="600" Grid.Row="0">
                 <Rectangle Fill="#FFFEF7" Height="10" Canvas.Left="48" Stroke="#FFFEF7" Canvas.Bottom="0" Width="120"/>
                 <Rectangle Fill="#FFFEF7" Height="10" Canvas.Left="240" Stroke="#FFFEF7" Canvas.Bottom="0" Width="120"/>
