@@ -47,6 +47,16 @@ namespace LeviIsland.ViewModels
                 OnPropertyChanged();
             }
         }
+        private bool _isButtomEnabled = true;
+        public bool IsButtonEnabled
+        {
+            get { return _isButtomEnabled;}
+            set
+            {
+                _isButtomEnabled = value;
+                OnPropertyChanged();
+            }
+        }
         public int NumberOfRings { get; set; }
         private List<Tuple<char, char>> Movements = new List<Tuple<char, char>>();
         private int _ringHeight = 10;
@@ -56,6 +66,8 @@ namespace LeviIsland.ViewModels
         public ICommand Start => new CommandDelegate(param => 
         {
             GetReady();
+            HanoiTowers towers = new HanoiTowers();
+            Movements = towers.GetMoves(NumberOfRings);
             MakeAnimations();
         });
 
@@ -64,7 +76,7 @@ namespace LeviIsland.ViewModels
             Canvas0.Children.Clear();
             Canvas1.Children.Clear();
             Canvas2.Children.Clear();
-
+            Steps.Clear();
             int ringWidth = 100;
 
             for(int i = 0; i < NumberOfRings; i++)
@@ -87,15 +99,14 @@ namespace LeviIsland.ViewModels
 
         private async void MakeAnimations()
         {
-            HanoiTowers towers = new HanoiTowers();
-            Movements = towers.GetMoves(NumberOfRings);
+            IsButtonEnabled= false;
             foreach (Tuple<char, char> move in Movements)
             {
                 MoveRing(move.Item1, move.Item2);
-                //Steps.Add($"{move.Item1} -> {move.Item2}");
                 Steps.Insert(0, $"{move.Item1} -> {move.Item2}");
                 await Task.Delay(_ringMoveTime);
             }
+            IsButtonEnabled = true;
         }
 
         private void MoveRing(char from, char to)

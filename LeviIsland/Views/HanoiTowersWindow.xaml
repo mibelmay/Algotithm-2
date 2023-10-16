@@ -10,40 +10,50 @@
     <Window.DataContext>
         <vm:HanoiTowersWindowVM/>
     </Window.DataContext>
-    
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="40"/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="100"/>
         </Grid.ColumnDefinitions>
-        <Canvas Background="Transparent" x:Name="gameField" Width="600" Grid.Row="0">
-            <Rectangle Fill="#FFFEF7" Height="10" Canvas.Left="48" Stroke="#FFFEF7" Canvas.Bottom="0" Width="120"/>
-            <Rectangle Fill="#FFFEF7" Height="10" Canvas.Left="240" Stroke="#FFFEF7" Canvas.Bottom="0" Width="120"/>
-            <Rectangle Fill="#FFFEF7" Height="10" Canvas.Right="48" Stroke="#FFFEF7" Canvas.Bottom="0" Width="120"/>
-            <!--Линии-->
-            <Rectangle Fill="#FFFEF7" Height="300" Canvas.Left="103" Stroke="#FFFEF7" Canvas.Bottom="10" Width="10"/>
-            <Rectangle Fill="#FFFEF7" Height="300" Canvas.Left="295" Stroke="#FFFEF7" Canvas.Bottom="10" Width="10"/>
-            <Rectangle Fill="#FFFEF7" Height="300" Canvas.Right="103" Stroke="#FFFEF7" Canvas.Bottom="10" Width="10"/>
-            <Canvas Height="300" Canvas.Left="48" Canvas.Bottom="10" Width="120">
-                <ContentPresenter Content="{Binding Canvas0}"/>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Button Command="{Binding Start}" IsEnabled="{Binding IsButtonEnabled}" Content="Start" Grid.Row="1" Background="#9E9E9E" Margin="10,5,10,5"/>
+            <Canvas Background="Transparent" x:Name="gameField" Width="600" Grid.Row="0">
+                <Rectangle Fill="#FFFEF7" Height="10" Canvas.Left="48" Stroke="#FFFEF7" Canvas.Bottom="0" Width="120"/>
+                <Rectangle Fill="#FFFEF7" Height="10" Canvas.Left="240" Stroke="#FFFEF7" Canvas.Bottom="0" Width="120"/>
+                <Rectangle Fill="#FFFEF7" Height="10" Canvas.Right="48" Stroke="#FFFEF7" Canvas.Bottom="0" Width="120"/>
+                <!--Линии-->
+                <Rectangle Fill="#FFFEF7" Height="300" Canvas.Left="103" Stroke="#FFFEF7" Canvas.Bottom="10" Width="10"/>
+                <Rectangle Fill="#FFFEF7" Height="300" Canvas.Left="295" Stroke="#FFFEF7" Canvas.Bottom="10" Width="10"/>
+                <Rectangle Fill="#FFFEF7" Height="300" Canvas.Right="103" Stroke="#FFFEF7" Canvas.Bottom="10" Width="10"/>
+                <Canvas Height="300" Canvas.Left="48" Canvas.Bottom="10" Width="120">
+                    <ContentPresenter Content="{Binding Canvas0}"/>
+                </Canvas>
+                <Canvas Height="300" Canvas.Left="240" Canvas.Bottom="10" Width="120">
+                    <ContentPresenter Content="{Binding Canvas1}"/>
+                </Canvas>
+                <Canvas Height="300" Canvas.Right="48" Canvas.Bottom="10" Width="120">
+                    <ContentPresenter Content="{Binding Canvas2}"/>
+                </Canvas>
             </Canvas>
-            <Canvas Height="300" Canvas.Left="240" Canvas.Bottom="10" Width="120">
-                <ContentPresenter Content="{Binding Canvas1}"/>
-            </Canvas>
-            <Canvas Height="300" Canvas.Right="48" Canvas.Bottom="10" Width="120">
-                <ContentPresenter Content="{Binding Canvas2}"/>
-            </Canvas>
-        </Canvas>
-        <Button Command="{Binding Start}" Content="Start" Grid.Row="1" Background="#9E9E9E" Margin="10,5,10,5"/>
-        <ScrollViewer
-            Grid.Row="0"
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer
+            Grid.Row="1"
             Grid.Column="1"
             VerticalScrollBarVisibility="Auto">
-        <ItemsControl Foreground="Wheat" ItemsSource="{Binding Steps}" Grid.Row="0" Grid.Column="1"/>
-        </ScrollViewer>
+                <ItemsControl Foreground="#FFFEF7" ItemsSource="{Binding Steps}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"/>
+            </ScrollViewer>
+            <TextBlock Text="Steps:" Grid.Row="0" Foreground="#FFFEF7" FontSize="20"/>
+        </Grid>
+
     </Grid>
 </Window>
