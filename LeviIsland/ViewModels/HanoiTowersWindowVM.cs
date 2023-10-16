@@ -47,9 +47,9 @@ namespace LeviIsland.ViewModels
             }
         }
         public int NumberOfRings { get; set; }
-        private List<Tuple<int, int>> Movements = new List<Tuple<int, int>>();
+        private List<Tuple<char, char>> Movements = new List<Tuple<char, char>>();
         private int _ringHeight = 10;
-        private static int _ringMoveTime = 1000;
+        private static int _ringMoveTime = 500;
 
         public ICommand Start => new CommandDelegate(param => 
         {
@@ -68,13 +68,15 @@ namespace LeviIsland.ViewModels
             for(int i = 0; i < NumberOfRings; i++)
             {
                 Rectangle rectangle = new Rectangle();
+                rectangle.RadiusX = 5;
+                rectangle.RadiusY = 5;
                 rectangle.Width = ringWidth;
                 rectangle.Height = _ringHeight;
 
                 Canvas.SetBottom(rectangle, (Canvas0.Children.Count - 30) * 10);
                 Canvas.SetLeft(rectangle, 60 - ringWidth / 2);
                 rectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(colors[i]);
-                rectangle.StrokeThickness= 1;
+                rectangle.StrokeThickness= 2;
 
                 Canvas0.Children.Add(rectangle);
                 ringWidth -= 5;
@@ -85,14 +87,14 @@ namespace LeviIsland.ViewModels
         {
             HanoiTowers towers = new HanoiTowers();
             Movements = towers.GetMoves(NumberOfRings);
-            foreach (Tuple<int, int> move in Movements)
+            foreach (Tuple<char, char> move in Movements)
             {
                 MoveRing(move.Item1, move.Item2);
                 await Task.Delay(_ringMoveTime);
             }
         }
 
-        private void MoveRing(int from, int to)
+        private void MoveRing(char from, char to)
         {
             Canvas fromColumn = FindColumn(from);
             Canvas toColumn = FindColumn(to);
@@ -103,15 +105,15 @@ namespace LeviIsland.ViewModels
             toColumn.Children.Add(rectangle); //перемещаем
         }
 
-        private Canvas FindColumn(int columnNumber)
+        private Canvas FindColumn(char columnNumber)
         {
             switch (columnNumber)
             {
-                case 0:
+                case 'A':
                     return Canvas0;
-                case 1:
+                case 'B':
                     return Canvas1;
-                case 2:
+                case 'C':
                     return Canvas2;
                 default:
                     break;
@@ -130,7 +132,17 @@ namespace LeviIsland.ViewModels
             "#DDC192",
             "#982062", 
             "#33A9AC",
-            "#FFFDED"
+            "#FFFDED",
+            "#03071E",
+            "#370617",
+            "#6A040F",
+            "#9D0208",
+            "#D00000",
+            "#DC2F02",
+            "#E85D04",
+            "#F48C06",
+            "#FAA307",
+            "#FFBA08"
         }; //10 colors
     }
 }

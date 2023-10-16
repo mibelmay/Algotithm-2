@@ -13,7 +13,7 @@ namespace LeviIsland.Models
 
 
         private static int minDisks = 1;
-        private static int maxDisks = 10;
+        private static int maxDisks = 20;
         public static bool IsDepthValid(string input)
         {
             if(int.TryParse(input, out int depth) && depth >= minDepth && depth <= maxDepth)

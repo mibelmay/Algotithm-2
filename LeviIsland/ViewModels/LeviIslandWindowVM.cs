@@ -49,7 +49,7 @@ namespace LeviIsland.ViewModels
             for (int i = 0; i < lines.Count; i++)
             {
                 Canvas.Children.Add(lines[i]);
-                await Task.Delay(5);
+                await Task.Delay(2);
             }
         }
 
