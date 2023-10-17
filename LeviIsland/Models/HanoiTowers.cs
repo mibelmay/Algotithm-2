@@ -6,7 +6,6 @@ namespace LeviIsland.Models
     public class HanoiTowers
     {
         private List<Movement> movements = new List<Movement>();
-        public int TotalSteps { get; set; }
         public List<Movement> GetMoves(int numberOfRings) 
         {
             DoAlgorithm(numberOfRings, 'A', 'B', 'C');
@@ -16,7 +15,6 @@ namespace LeviIsland.Models
         {
             if (n > 0)
             {
-                TotalSteps++;
                 DoAlgorithm(n - 1, from, temp, to);
                 movements.Add(new Movement(from, to));
                 DoAlgorithm(n - 1, temp, to, from);

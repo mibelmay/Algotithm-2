@@ -43,7 +43,7 @@ namespace LeviIsland.ViewModels
                 OnPropertyChanged();
             }
         }
-        private int _speed = 1000;
+        private int _speed = 500;
         public int Speed
         {
             get { return _speed; }
@@ -67,6 +67,7 @@ namespace LeviIsland.ViewModels
         private int _totalSteps;
         private List<Movement> Movements= new List<Movement>();
         private int _ringHeight = 10;
+        private int _ringWidth = 150;
         private string _step;
         public string Step
         {
@@ -77,7 +78,7 @@ namespace LeviIsland.ViewModels
                 OnPropertyChanged();
             }
         }
-        public static int MaxTime = 2000;
+        public static int MaxTime = 1000;
         public static int MinTime = 1;
 
         public ICommand Start => new CommandDelegate(param => 
@@ -85,7 +86,7 @@ namespace LeviIsland.ViewModels
             GetReady();
             HanoiTowers towers = new HanoiTowers();
             Movements = towers.GetMoves(NumberOfRings);
-            _totalSteps = towers.TotalSteps;
+            _totalSteps = Movements.Count;
             MakeAnimations();
         });
 
@@ -94,24 +95,28 @@ namespace LeviIsland.ViewModels
             Canvas0.Children.Clear();
             Canvas1.Children.Clear();
             Canvas2.Children.Clear();
-            int ringWidth = 100;
+            int ringWidth = _ringWidth;
 
             for(int i = 0; i < NumberOfRings; i++)
             {
-                Rectangle rectangle = new Rectangle();
-                rectangle.RadiusX = 5;
-                rectangle.RadiusY = 5;
-                rectangle.Width = ringWidth;
-                rectangle.Height = _ringHeight;
-
-                Canvas.SetBottom(rectangle, (Canvas0.Children.Count - 30) * 10);
-                Canvas.SetLeft(rectangle, 60 - ringWidth / 2);
-                rectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(colors[i]);
-                rectangle.StrokeThickness= 2;
-
+                Rectangle rectangle = CreateRing(i, ringWidth);
                 Canvas0.Children.Add(rectangle);
                 ringWidth -= 5;
             }
+        }
+        private Rectangle CreateRing(int number, int ringWidth)
+        {
+            Rectangle rectangle = new Rectangle();
+            rectangle.RadiusX = 5;
+            rectangle.RadiusY = 5;
+            rectangle.Width = ringWidth;
+            rectangle.Height = _ringHeight;
+
+            Canvas.SetBottom(rectangle, (Canvas0.Children.Count - 30) * 10);
+            Canvas.SetLeft(rectangle, 60 - ringWidth / 2);
+            rectangle.Fill = (SolidColorBrush)new BrushConverter().ConvertFrom(colors[number]);
+            rectangle.StrokeThickness = 2;
+            return rectangle;   
         }
 
         private async void MakeAnimations()
@@ -120,7 +125,6 @@ namespace LeviIsland.ViewModels
             foreach (Movement move in Movements)
             {
                 MoveRing(move.FromRing, move.ToRing);
-                //Steps.Insert(0, $"{move.FromRing} -> {move.ToRing}");
                 Step = $"{move.FromRing} -> {move.ToRing}";
                 await Task.Delay(MaxTime + MinTime - Speed);
             }
@@ -156,18 +160,8 @@ namespace LeviIsland.ViewModels
         }
 
         private List<string> colors = new List<string> 
-        { 
-            "#FFC567", 
-            "#FD5A46", 
-            "#552CB7", 
-            "#00995E", 
-            "#058CD7",
-            "#FB7DA8",
-            "#DDC192",
-            "#982062", 
-            "#33A9AC",
-            "#FFFDED",
-            "#03071E",
+        {
+             "#03071E",
             "#370617",
             "#6A040F",
             "#9D0208",
@@ -176,7 +170,21 @@ namespace LeviIsland.ViewModels
             "#E85D04",
             "#F48C06",
             "#FAA307",
-            "#FFBA08"
-        }; //10 colors
+            "#FFBA08",
+            "#B98B73",
+            "#CB997E",
+            "#DDBEA9",
+            "#FFE8D6",
+            "#D4C7B0",
+            "#B7B7A4",
+            "#A5A58D",
+            "#6B705C",
+            "#3F4238",
+            "#1b4332",
+            "#240046",
+            "#3c096c",
+            "#5a189a"
+
+        }; //23 colors
     }
 }
