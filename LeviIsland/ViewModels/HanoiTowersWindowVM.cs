@@ -1,15 +1,11 @@
 ﻿using LeviIsland.Models;
 using System;
 using System.Collections.Generic;
-//using System.Drawing;
 using System.Windows.Shapes;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Shapes;
-using System.Windows;
 using System.Windows.Media;
-using System.Diagnostics;
-using System.Drawing.Printing;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 
@@ -47,6 +43,16 @@ namespace LeviIsland.ViewModels
                 OnPropertyChanged();
             }
         }
+        private int _speed = 1000;
+        public int Speed
+        {
+            get { return _speed; }
+            set
+            {
+                _speed = value;
+                OnPropertyChanged();
+            }
+        }
         private bool _isButtomEnabled = true;
         public bool IsButtonEnabled
         {
@@ -58,16 +64,28 @@ namespace LeviIsland.ViewModels
             }
         }
         public int NumberOfRings { get; set; }
-        private List<Tuple<char, char>> Movements = new List<Tuple<char, char>>();
+        private int _totalSteps;
+        private List<Movement> Movements= new List<Movement>();
         private int _ringHeight = 10;
-        private static int _ringMoveTime = 500;
-        public ObservableCollection<string> Steps { get; set; } = new ObservableCollection<string>();
+        private string _step;
+        public string Step
+        {
+            get { return _step; }
+            set
+            {
+                _step = value;
+                OnPropertyChanged();
+            }
+        }
+        public static int MaxTime = 2000;
+        public static int MinTime = 1;
 
         public ICommand Start => new CommandDelegate(param => 
         {
             GetReady();
             HanoiTowers towers = new HanoiTowers();
             Movements = towers.GetMoves(NumberOfRings);
+            _totalSteps = towers.TotalSteps;
             MakeAnimations();
         });
 
@@ -76,7 +94,6 @@ namespace LeviIsland.ViewModels
             Canvas0.Children.Clear();
             Canvas1.Children.Clear();
             Canvas2.Children.Clear();
-            Steps.Clear();
             int ringWidth = 100;
 
             for(int i = 0; i < NumberOfRings; i++)
@@ -100,12 +117,14 @@ namespace LeviIsland.ViewModels
         private async void MakeAnimations()
         {
             IsButtonEnabled= false;
-            foreach (Tuple<char, char> move in Movements)
+            foreach (Movement move in Movements)
             {
-                MoveRing(move.Item1, move.Item2);
-                Steps.Insert(0, $"{move.Item1} -> {move.Item2}");
-                await Task.Delay(_ringMoveTime);
+                MoveRing(move.FromRing, move.ToRing);
+                //Steps.Insert(0, $"{move.FromRing} -> {move.ToRing}");
+                Step = $"{move.FromRing} -> {move.ToRing}";
+                await Task.Delay(MaxTime + MinTime - Speed);
             }
+            Step = "Total : " + _totalSteps;
             IsButtonEnabled = true;
         }
 

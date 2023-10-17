@@ -5,18 +5,20 @@ namespace LeviIsland.Models
 {
     public class HanoiTowers
     {
-        private List<Tuple<char, char>> Movements = new List<Tuple<char, char>>();
-        public List<Tuple<char, char>> GetMoves(int numberOfRings) 
+        private List<Movement> movements = new List<Movement>();
+        public int TotalSteps { get; set; }
+        public List<Movement> GetMoves(int numberOfRings) 
         {
             DoAlgorithm(numberOfRings, 'A', 'B', 'C');
-            return Movements;
+            return movements;
         }
         private void DoAlgorithm(int n, char from, char to, char temp)
         {
             if (n > 0)
             {
+                TotalSteps++;
                 DoAlgorithm(n - 1, from, temp, to);
-                Movements.Add(new Tuple<char, char>(from, to));
+                movements.Add(new Movement(from, to));
                 DoAlgorithm(n - 1, temp, to, from);
             }
         }
