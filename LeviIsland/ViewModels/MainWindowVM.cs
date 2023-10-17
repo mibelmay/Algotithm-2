@@ -35,7 +35,7 @@ namespace LeviIsland.ViewModels
             LeviIslandWindowVM newVM = new LeviIslandWindowVM();
             newWindow.DataContext= newVM;
             newVM.Depth = int.Parse(Depth);
-            newWindow.Show();
+            newWindow.ShowDialog();
         });
 
         public ICommand OpenHanoiWindow => new CommandDelegate(param =>
@@ -49,8 +49,8 @@ namespace LeviIsland.ViewModels
             HanoiTowersWindowVM newVM = new HanoiTowersWindowVM();
             newWindow.DataContext= newVM;
             newVM.NumberOfRings = int.Parse(NumberOfRings);
-            newWindow.Show();
             newVM.GetReady();
+            newWindow.ShowDialog();
         });
     }
 }

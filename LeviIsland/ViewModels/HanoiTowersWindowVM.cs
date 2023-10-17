@@ -99,8 +99,7 @@ namespace LeviIsland.ViewModels
 
             for(int i = 0; i < NumberOfRings; i++)
             {
-                Rectangle rectangle = CreateRing(i, ringWidth);
-                Canvas0.Children.Add(rectangle);
+                Canvas0.Children.Add(CreateRing(i, ringWidth));
                 ringWidth -= 5;
             }
         }
@@ -128,7 +127,7 @@ namespace LeviIsland.ViewModels
                 Step = $"{move.FromRing} -> {move.ToRing}";
                 await Task.Delay(MaxTime + MinTime - Speed);
             }
-            Step = "Total : " + _totalSteps;
+            Step = "Total :\n" + _totalSteps;
             IsButtonEnabled = true;
         }
 
