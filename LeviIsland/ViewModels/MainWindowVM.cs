@@ -42,7 +42,7 @@ namespace LeviIsland.ViewModels
         {
             if (!IsDisksValid(NumberOfRings))
             {
-                NumberOfRings = "Введено некорректное количество дисков";
+                NumberOfRings = "Введено некорректное количество колец";
                 return;
             }
             HanoiTowersWindow newWindow = new HanoiTowersWindow();

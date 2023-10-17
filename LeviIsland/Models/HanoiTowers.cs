@@ -20,6 +20,5 @@ namespace LeviIsland.Models
                 DoAlgorithm(n - 1, temp, to, from);
             }
         }
-
     }
 }

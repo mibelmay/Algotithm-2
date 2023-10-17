@@ -6,7 +6,7 @@
         xmlns:vm="clr-namespace:LeviIsland.ViewModels"
         mc:Ignorable="d"
         ResizeMode="NoResize"
-        Title="Menu" Height="200" Width="500" Background="#222222">
+        Title="Menu" Height="200" Width="530" Background="#222222">
     <Window.DataContext>
         <vm:MainWindowVM/>
     </Window.DataContext>
@@ -29,7 +29,7 @@
         <TextBlock Text="Фрактал Остров Леви" FontSize="20" Foreground="#cfcfcf" Grid.Column="1" Grid.Row="0"/>
         <TextBlock Text="Ханойские башни" FontSize="20" Foreground="#cfcfcf" Grid.Column="2" Grid.Row="0"/>
         <TextBox Text="{Binding NumberOfRings}" Grid.Row="2" Grid.Column="2"  Background="#9e9e9e" Margin="5,10,5,50"/>
-        <TextBlock Text="Choose number of rings (between 1 and ...):" Grid.Column="2" Grid.Row="1" Foreground="#cfcfcf"/>
+        <TextBlock Text="Choose number of rings (between 1 and 23):" Grid.Column="2" Grid.Row="1" Foreground="#cfcfcf"/>
         <Button Command="{Binding OpenHanoiWindow}" Content="Start" Grid.Row="3" Grid.Column="2" VerticalAlignment="Center" Style="{DynamicResource RoundedButton}"  Margin="5,0,5,0"/>
     </Grid>
 </Window>

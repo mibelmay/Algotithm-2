@@ -11,7 +11,6 @@ namespace LeviIsland.Models
         private static int minDepth = 1;
         private static int maxDepth = 17;
 
-
         private static int minRings = 1;
         private static int maxRings = 23;
         public static bool IsDepthValid(string input)
@@ -23,7 +22,7 @@ namespace LeviIsland.Models
 
         public static bool IsDisksValid(string input)
         {
-            if (int.TryParse(input, out int disks) && disks >= minRings && disks <= maxRings)
+            if (int.TryParse(input, out int rings) && rings >= minRings && rings <= maxRings)
                 return true;
             return false;
         }

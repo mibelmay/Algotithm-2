@@ -16,6 +16,7 @@ namespace LeviIsland.Models
 
         public void GenerateIsland(int width, int height, int depth)
         {
+            // вызываем метод отрисовки для каждой стороны квадрата
             Draw_Levy(width, height, (width / 2 - 100), (width / 2 + 100), (height / 2 - 100), (height / 2 - 100), depth);
             Draw_Levy(width, height, (width / 2 + 100), (width / 2 + 100), (height / 2 - 100), (height / 2 + 100), depth);
             Draw_Levy(width, height, (width / 2 + 100), (width / 2 - 100), (height / 2 + 100), (height / 2 + 100), depth);
